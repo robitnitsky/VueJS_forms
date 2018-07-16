@@ -1,0 +1,35 @@
+{
+  "name": "gulpstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.51",
+    "browser-sync": "^2.24.4",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-sass": "^4.0.1",
+    "gulp-strip-css-comments": "^2.0.0"
+  },
+  "dependencies": {
+    "css-minifiers": "^3.0.0",
+    "del": "^3.0.0",
+    "files-exist": "^1.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "include-media": "^1.4.9",
+    "normalize.css": "^8.0.0",
+    "reset-css": "^4.0.1",
+    "slick-carousel": "^1.5.8",
+    "vee-validate": "^2.1.0-beta.3"
+  }
+}

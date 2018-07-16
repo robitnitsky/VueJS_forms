@@ -1,0 +1,107 @@
+// Import normilize
+@import '../../node_modules/normalize.css/normalize';
+// Import reset
+@import '../../node_modules/reset-css/sass/reset';
+
+
+// Import base
+@import 'base/mixin';
+@import 'base/variables';
+@import 'base/typography';
+
+// Import vendors
+@import '../vendor-entries/vendor';
+
+/* STYLES */
+html, 
+html * {
+    box-sizing: border-box;
+}
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 100px 15px;
+}
+
+.input-group {
+    margin: 0 0 30px;
+}
+
+label {
+    display: block;
+    margin: 0 0 10px;
+}
+
+input,
+textarea {
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    &:focus {
+        border-color: black;
+        outline: none;
+    }
+    &.error {
+        border-color: red;
+    }
+}
+
+textarea {
+    height: auto;
+    resize: none;
+}
+
+select {
+    min-width: 200px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.submit-holder {
+    text-align: center;
+    margin: 0 0 30px;
+}
+
+.btn {
+    @include animate(background color);
+    display: inline-block;
+    vertical-align: top;
+    background: none;
+    box-shadow: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    min-width: 150px;
+    cursor: pointer;
+    &:hover {
+        background: black;
+        color: white;
+    }
+    &:disabled {
+        pointer-events: none;
+    }
+}
+
+.user-table {
+    width: 100%;
+    margin: 0 0 20px;
+    caption {
+        text-align: left;
+        margin: 0 0 5px;
+    }
+    th,td {
+        border: 1px solid black;
+        width: 50%;
+        height: 30px;
+        vertical-align: middle;
+        padding: 5px;
+    }
+    th {
+        text-align: right;
+    }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/styles.css">
+	<!-- development version, includes helpful console warnings -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>Vue</title>
+</head>
+<body>
+	<div id="app">
+		<div class="container">
+			<form :data-vv-scope="inputForm.scope">
+				<div class="input-group">
+					<label for="fname">First Name*</label>
+					<input	type="text"
+							name="First Name"
+							id="fname"
+							v-model="inputForm.name"
+							v-validate="{ required: true, isExist: ['name', inputForm.scope]}"
+							v-bind:class="{'error': errors.has('First Name', inputForm.scope) }">
+					<span class="error-message">{{ errors.first('First Name', inputForm.scope) }}</span>
+				</div>
+				<div class="input-group">
+					<label for="lname">Last Name*</label>
+					<input 	type="text"
+							name="Last Name"
+							id="lname"
+							v-model="inputForm.lastName"
+							v-validate="{ required: true, isExist: ['lastName', inputForm.scope]}"
+							v-bind:class="{'error': errors.has('Last Name', inputForm.scope) }">
+					<span class="error-message">{{ errors.first('Last Name', inputForm.scope) }}</span>
+				</div>
+				<div class="input-group">
+					<label for="e-mail">Email*</label>
+					<input 	type="email"
+							name="Email"
+							id="e-mail"
+							v-model="inputForm.email"
+							v-validate="{ required: true, email: true, isExist: ['email', inputForm.scope]}"
+							v-bind:class="{'error': errors.has('Email', inputForm.scope) }">
+					<span class="error-message">{{ errors.first('Email', inputForm.scope) }}</span>
+				</div>
+				<div class="input-group">
+					<label for="age">Age</label>
+					<input 	type="text"
+							name="Age"
+							id="age"
+							v-model="inputForm.age"
+							v-validate="{ required: false, numeric: true}"
+							v-bind:class="{'error': errors.has('Age', inputForm.scope) }">
+					<span class="error-message">{{ errors.first('Age', inputForm.scope) }}</span>
+				</div>
+				<div class="input-group">
+					<label for="skype">Skype</label>
+					<input 	type="text"
+							name="Skype"
+							id="skype"
+							v-model="inputForm.skype"
+							v-validate="{ required: false, min: 4, max: 10, isExist: ['skype', inputForm.scope]}"
+							v-bind:class="{'error': errors.has('Skype', inputForm.scope) }">
+					<span class="error-message">{{ errors.first('Skype', inputForm.scope) }}</span>
+				</div>
+				<div class="submit-holder">
+					<button class="btn" @click.prevent="submitEvent(inputForm.scope)">Submit</button>
+				</div>
+			</form>
+			<form :data-vv-scope="secondaryForm.scope">
+				<div class="input-group">
+					<label for="hobbies">Tell us about your hobbies</label>
+					<textarea	id="hobbies"
+								rows="10"
+								v-model="secondaryForm.hobbies">
+					</textarea>
+				</div>
+				<div class="input-group">
+					<label for="telephone">Give us all your telephone number</label>
+					<input	type="text"
+							name="Telephone"
+							id="telephone"
+							v-model="secondaryForm.telephone">
+				</div>
+				<div class="input-group">
+					<label for="nick">Your nickname</label>
+					<input	type="text"
+							name="Nickname"
+							v-model="secondaryForm.nickname"
+							v-validate="{ required: false, keywords_validation: [reactions], isExist: ['nickname', secondaryForm.scope] }">
+					<span class="error-message">{{ errors.first('Nickname', secondaryForm.scope) }}</span>
+				</div>
+				<div class="submit-holder">
+					<button class="btn" @click.prevent="submitEvent(secondaryForm.scope)">Submit</button>
+				</div>
+			</form>
+
+			<div class="submit-holder">
+				<button class="btn" @click.prevent="addUser()">Add User</button>
+			</div>
+
+			<div class="input-group">
+				<select v-model="selected" v-on:change="onChangeSelect">
+					<option disabled value="">Please select one</option>
+					<option	v-for="option in options"
+							v-bind:value="option.value">
+					  {{ option.text }}
+					</option>
+				</select>
+			</div>
+
+			<table class="user-table" id="main-table">
+				<caption>User info</caption>
+				<tbody>
+					<tr>
+						<th>First Name</th>
+						<td :data-scope="inputForm.scope" data-input="name"></td>
+					</tr>
+					<tr>
+						<th>Last Name</th>
+						<td :data-scope="inputForm.scope" data-input="lastName"></td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td :data-scope="inputForm.scope" data-input="email"></td>
+					</tr>
+					<tr>
+						<th>Age</th>
+						<td :data-scope="inputForm.scope" data-input="age"></td>
+					</tr>
+					<tr>
+						<th>Skype</th>
+						<td :data-scope="inputForm.scope" data-input="skype"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="user-table" id="secondary-table">
+				<caption>Add user info</caption>
+				<tbody>
+					<tr>
+						<th>User's hobbies</th>
+						<td :data-scope="secondaryForm.scope" data-input="hobbies"></td>
+					</tr>
+					<tr>
+						<th>User's telephones</th>
+						<td :data-scope="secondaryForm.scope" data-input="telephone"></td>
+					</tr>
+					<tr>
+						<th>User's nickname</th>
+						<td :data-scope="secondaryForm.scope" data-input="nickname"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
+</html>

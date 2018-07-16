@@ -1,0 +1,22 @@
+%listreset {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/// Animate css properties
+// usage 
+// scss - @include animate(color);
+//     or @include animate(color width);
+//     or @include animate(color width, 1s, linear);
+//
+$animation-speed: 0.3s !default;
+
+@mixin animate($properties, $duration: $animation-speed, $easing: ease-in-out) {
+  $list:();
+  @each $prop in $properties {
+    $str: #{$prop} #{$duration} #{$easing};
+    $list: append($list, $str, comma);
+  }
+  transition: $list;
+}
